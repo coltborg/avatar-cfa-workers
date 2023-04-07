@@ -24,10 +24,9 @@ This project was inspired by [Bandcamp United Avatar Framer](https://github.com/
 
 To get started with this project, follow these steps:
 
-⚠️TODO: Update URL
 ```bash
 # Clone the repository:
-git clone https://github.com/your-username/your-project.git
+git clone git@github.com:coltborg/avatar-cfa-workers.git
 
 # Install dependencies:
 npm install
@@ -69,5 +68,4 @@ git push origin feature/my-new-feature
 
 ## License
 
-⚠️TODO: Add link
-This project is licensed under the MIT License - see the LICENSE file for details.
+This project is licensed under the MIT License - see the [LICENSE](/LICENSE) file for details.
