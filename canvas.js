@@ -123,7 +123,7 @@ document.addEventListener("DOMContentLoaded", function() {
       }
       canvas.renderAll();
     }
-    colorCustomControl.onchange = function (e) {
+    colorCustomControl.onchange = function () {
       window.bgColor.set("fill", colorCustomControl.value);
       canvas.renderAll();
     }
@@ -204,7 +204,7 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   // when the image is removed
-  // remove it from the canvas
+  // Remove it from the canvas
   // disable the download button and controls
   // re-add the upload text
   imgUpload.on("removedfile", function() {
@@ -215,57 +215,53 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("upload-text").innerHTML = "Drop files here or click to upload.";
   });
 
-  // Event listeners
-  document.getElementById("side").addEventListener("click", function() {
+  var sideScenario = function() {
     console.log("side 🥗");
     window.logo?.set({ visible: true, top: 25, left: -41 });
     window.logo?.scaleToWidth(367);
     window.logo2?.set({ visible: false });
     window.bgColor?.set({ visible: true });
     window.profile?.set({ left: 366, top: 256 });
-
     canvas.overlayImage = null;
     canvas.renderAll();
     document.getElementById("corner-control").disabled = true;
     document.getElementById("color-control").disabled = false;
     document.getElementById("custom-color-control").disabled = false;
+  };
 
-  });
-  document.getElementById("center").addEventListener("click", function() {
+  var centerScenario = function() {
     console.log("center 🧲");
     window.logo?.scaleToWidth(512);
     window.logo?.set({ visible: true, top: 0, left: 0 });
     window.logo2?.set({ visible: false });
     window.bgColor?.set({ visible: true });
     window.profile?.set({ left: 256, top: 256 });
-
     canvas.overlayImage = null;
     canvas.renderAll();
     document.getElementById("corner-control").disabled = true;
     document.getElementById("color-control").disabled = false;
     document.getElementById("custom-color-control").disabled = false;
-  });
-  document.getElementById("corner").addEventListener("click", function() {
+  };
+
+  var cornerScenario = function() {
     console.log("corner 🎁");
     window.logo?.set({ visible: false });
     window.logo2?.set({ visible: true });
     window.bgColor?.set({ visible: false });
     window.profile?.set({ left: 256, top: 256 });
-
     canvas.overlayImage = null;
     canvas.renderAll();
-
     document.getElementById("corner-control").disabled = false;
     document.getElementById("color-control").disabled = true;
     document.getElementById("custom-color-control").disabled = true;
-  });
-  document.getElementById("frame").addEventListener("click", function() {
+  };
+
+  var frameScenario = function() {
     console.log("frame 🖼️");
     window.logo?.set({ visible: false });
     window.logo2?.set({ visible: false });
     window.bgColor?.set({ visible: false });
     window.profile?.set({ left: 256, top: 256 });
-
     canvas.setOverlayImage('/img/scenarios/frame.png', function() {
       canvas.overlayImage.scaleToWidth(canvas.getWidth())
       canvas.renderAll();
@@ -277,6 +273,18 @@ document.addEventListener("DOMContentLoaded", function() {
     document.getElementById("corner-control").disabled = true;
     document.getElementById("color-control").disabled = true;
     document.getElementById("custom-color-control").true = false;
+  };
+
+  // Event listeners
+  var sideBtn = document.getElementById("side");
+  var centerBtn = document.getElementById("center");
+  var cornerBtn = document.getElementById("corner");
+  var frameBtn = document.getElementById("frame");
+  ['click', 'touchstart'].forEach((e) => {
+    sideBtn.addEventListener(e, sideScenario);
+    centerBtn.addEventListener(e, centerScenario);
+    cornerBtn.addEventListener(e, cornerScenario);
+    frameBtn.addEventListener(e, frameScenario);
   });
 
   // handle download
