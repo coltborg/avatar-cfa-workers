@@ -1,0 +1,23 @@
+{
+  "name": "avatar.cfaworkersunited",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "host": "vite --host"
+  },
+  "devDependencies": {
+    "@tailwindcss/forms": "^0.5.3",
+    "autoprefixer": "^10.4.14",
+    "postcss": "^8.4.21",
+    "tailwindcss": "^3.2.7",
+    "vite": "^4.2.0"
+  },
+  "dependencies": {
+    "dropzone": "^6.0.0-beta.2",
+    "fabric": "^5.3.0"
+  }
+}

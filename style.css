@@ -1,0 +1,80 @@
+@import url('https://fonts.googleapis.com/css2?family=Rubik:wght@400;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  @apply tracking-wide;
+
+}
+
+body *:focus {
+  @apply outline-none ring ring-purple-600
+}
+
+::selection {
+  /*background: theme('colors.secondary.DEFAULT');*/
+}
+
+
+/*
+  Instruction step styles
+*/
+ol.instructions {
+  list-style: none;
+  counter-reset: my-awesome-counter;
+  list-style-position: outside;
+}
+ol.instructions > li {
+  counter-increment: my-awesome-counter;
+}
+ol.instructions > li::before {
+  content: counter(my-awesome-counter) ". ";
+  /*@apply text-primary-dark;*/
+  @apply font-bold;
+}
+
+#download:disabled {
+  @apply bg-pink-300;
+  cursor: not-allowed;
+}
+
+
+/*
+  Canvas styles
+*/
+.canvas-container canvas{
+  width: 100%!important;
+  height: 100%!important;
+}
+
+canvas {
+  min-width: 100%;
+
+  min-height: 100%;
+}
+
+
+/*
+    dropzone overides
+*/
+.dz-success-mark, .dz-error-mark, .dz-size {
+  display: none !important;
+}
+
+.dz-remove {
+  @apply text-xs;
+  @apply block;
+  @apply mt-2;
+}
+
+/*TODO: Use one of the selectors from https://stackoverflow.com/a/20541859/7077589 and figure out
+how to remove the virtical space around the range input in IE*/
+@supports (-ms-ime-align:auto) {
+  /* Pre-Chromium Edge only styles, selector taken from hhttps://stackoverflow.com/a/32202953/7077589 */
+  input[type=range] {
+    margin: 0;
+    /*Edge starts the margin from the thumb, not the track as other browsers do*/
+  }
+}

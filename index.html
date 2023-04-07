@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no" />
+  <title>CfA Workers United Avatar Generator</title>
+  <meta name="description" content="A simple tool to create framed profile pictures for online tools or social media in support of a cause.">
+  <link rel="icon" href="img/favicon.ico">
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Create your own CfA Workers United avatar" />
+  <meta property="og:description" content="Update an image and add customize a CfAWU logo with it. Then download it to use in zoom or slack or social media." />
+  <meta property="og:url" content="https://avatar.cfaworkersunited.com" />
+  <meta property="og:image" content="https://avatar.bandcampunited.org/img/previews/frame.png" />
+  <meta property="og:image:width" content="512" />
+  <meta property="og:image:height" content="512" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:description" content="Create your own CfA Workers United avatar" />
+  <meta name="twitter:image" content="https://avatar.bandcampunited.org/img/previews/frame.png" />
+  <meta name="twitter:site" content="@CfAWorkers" />
+</head>
+<body>
+<div class="min-h-screen bg-pink-50 text-stone-700 font-sans">
+  <nav class="bg-white">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex justify-between h-16">
+        <div class="flex">
+          <div class="flex-shrink-0 flex items-center">
+            <img src="img/logo.png" class="h-12" alt="Code for America Workers Union">
+          </div>
+        </div>
+        <div class="ml-auto flex-shrink-0 flex items-center">
+          <a
+            class="underline text-pink-400 font-semibold"
+            href="https://cfaworkersunited.com/">
+            Full site
+          </a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="py-32">
+    <main>
+      <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
+        <div class="px-4 py-8 sm:px-16">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-x-24">
+            <div>
+              <div>
+                <h1 class="font-bold text-stone-800 text-3xl leading-8">
+                  Show support for CfA Workers United by changing your slack/zoom profile image!
+                </h1>
+
+                <ol class="instructions mt-10">
+                  <li class="text-lg leading-5 font-medium">
+                    Upload your picture or another square image below.
+
+                    <div id="upload" class="mt-4 p-6 w-full bg-pink-200 text-center rounded cursor-pointer hover:text-secondary hover:underline transition duration-500 ease-in-out">
+                      <button type="button" id="upload-text">Drop files here or click to upload.</button>
+                    </div>
+                  </li>
+
+                  <li class="text-lg leading-5 font-medium pt-12">
+                    <p class="mb-4">Select your scenario.</p>
+                    <p>The first two are ideal for use with an <a class="underline text-pink-400 font-semibold" href="https://www.remove.bg/" target="_blank" rel="noopener noreferrer">image without a background</a> (<a class="underline text-pink-400 font-semibold" href="https://techpp.com/2022/11/18/remove-background-from-images-on-macos-ventura-guide/#How_to_Remove_Background_from_Multiple_Images_on_Mac_With_Previews_Remove_Background_Feature" target="_blank" rel="noopener noreferrer">latest macOS can do it</a>).</p>
+                    <div class="mt-4 grid grid-cols-2 gap-12">
+                      <button id="side" type="button">
+                        <img class="object-contain w-full max-w-6 rounded-full border-2 border-gray-100 inline-block shadow-xl transition duration-300 ease-in-out cursor-pointer hover:border-primary" src="img/previews/side.png" alt="Side">
+                      </button>
+                      <button id="center" type="button">
+                        <img class="object-contain w-full max-w-6 rounded-full border-2 border-gray-100 inline-block shadow-xl transition duration-300 ease-in-out cursor-pointer hover:border-primary" src="img/previews/center.png" alt="Center">
+                      </button>
+                    </div>
+                    <p class="mt-4">The latest two are ideal with images with a background.</p>
+                    <div class="mt-4 grid grid-cols-2 gap-12">
+                      <button id="corner" type="button">
+                        <img class="object-contain w-full max-w-6 rounded-full border-2 border-gray-100 inline-block shadow-xl transition duration-300 ease-in-out cursor-pointer hover:border-primary" src="img/previews/corner.png" alt="Corner">
+                      </button>
+                      <button id="frame" type="button">
+                      <img class="object-contain w-full max-w-6 rounded-full border-2 border-gray-100 inline-block shadow-xl transition duration-300 ease-in-out cursor-pointer hover:border-primary" src="img/previews/frame.png" alt="Frame">
+                      </button>
+                    </div>
+                  </li>
+
+                  <li class="text-lg leading-5 font-medium pt-12">
+                    Use the photo tools to scale, rotate, and move your image over the preview.
+                  </li>
+
+                  <li class="text-lg leading-5 font-medium pt-12">
+                    Download your new profile image!
+
+                    <button class="block max-w-56 mt-4 px-8 py-5 rounded bg-pink-400 text-white text-lg font-bold text-center" id="download" disabled>
+                      Download profile picture
+                    </button>
+                  </li>
+
+                  <li class="text-lg leading-5 font-medium pt-12">
+                    Upload your picture to Slack, Zoom, Google Workspace, your fan collection, or anywhere else.
+                  </li>
+                </ol>
+              </div>
+            </div>
+
+            <div class="mt-12 md:mt-0">
+              <canvas id="c" class="shadow-2xl" style="width: 512px; height: 512px;"></canvas>
+
+              <div class="controls w-full">
+                <div class="pt-6">
+                  <label for="angle-control" class="text-lg font-medium leading-5">Rotation</label>
+                  <input type="range" id="angle-control" value="0" min="0" max="360" class="w-full" disabled>
+                </div>
+                <div class="pt-6">
+                  <label for="scale-control" class="text-lg font-medium leading-5">Scale</label>
+                  <input type="range" id="scale-control" value="100" min="1" max="200" class="w-full" disabled>
+                </div>
+                <div class="pt-6">
+                  <label for="corner-control" class="text-lg font-medium leading-5">Corner position</label>
+                  <select name="corner-control" id="corner-control" class="disabled:bg-stone-200 disabled:text-stone-500 disabled:cursor-not-allowed" disabled>
+                    <option value="tl">Top left</option>
+                    <option value="tr">Top right</option>
+                    <option value="bl">Bottom left</option>
+                    <option value="br">Bottom right</option>
+                  </select>
+                </div>
+                <div class="pt-6">
+                  <label for="color-control" class="text-lg font-medium leading-5">Background color</label>
+                  <select name="color-control" id="color-control" class="disabled:bg-stone-200 disabled:text-stone-500 disabled:cursor-not-allowed" disabled>
+                    <option value="purple" selected>Purple</option>
+                    <option value="lightPurple">Light Purple</option>
+                    <option value="red">Red</option>
+                    <option value="yellow">Yellow</option>
+                    <option value="lightBlue">Lightblue</option>
+                    <option value="green">Green</option>
+                    <option value="cream">Cream</option>
+                    <option value="custom">Custom</option>
+                  </select>
+                </div>
+                <div class="pt-6">
+                  <label for="custom-color-control" class="text-lg font-medium leading-5">Custom color</label>
+                  <input type="color" id="custom-color-control" name="custom-color-control" value="#2B1A78" disabled>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+  </div>
+  <footer class="p-8">
+    Inspired by <a href="https://avatar.bandcampunited.org/" target="_blank" rel="noopener noreferrer" class="underline text-pink-400 font-semibold">BCUnited</a> 💜
+  </footer>
+</div>
+<script type="module" src="/main.js"></script>
+</body>
+</html>
