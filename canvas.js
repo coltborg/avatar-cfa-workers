@@ -216,7 +216,6 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 
   var sideScenario = function() {
-    console.log("side 🥗");
     window.logo?.set({ visible: true, top: 25, left: -41 });
     window.logo?.scaleToWidth(367);
     window.logo2?.set({ visible: false });
@@ -230,7 +229,6 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 
   var centerScenario = function() {
-    console.log("center 🧲");
     window.logo?.scaleToWidth(512);
     window.logo?.set({ visible: true, top: 0, left: 0 });
     window.logo2?.set({ visible: false });
@@ -244,7 +242,6 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 
   var cornerScenario = function() {
-    console.log("corner 🎁");
     window.logo?.set({ visible: false });
     window.logo2?.set({ visible: true });
     window.bgColor?.set({ visible: false });
@@ -257,7 +254,6 @@ document.addEventListener("DOMContentLoaded", function() {
   };
 
   var frameScenario = function() {
-    console.log("frame 🖼️");
     window.logo?.set({ visible: false });
     window.logo2?.set({ visible: false });
     window.bgColor?.set({ visible: false });
